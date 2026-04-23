@@ -1,127 +1,422 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="src/styles/styles.css">
-    <link rel="stylesheet" href="src/styles/header.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Bruno Avila</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#1E293B',
+                        accent: '#64748B',
+                        light: '#F8FAFC'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-left': 'fadeInLeft 1s ease-out',
+                        'fade-in-right': 'fadeInRight 1s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .clip-shape { clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%); }
+        @media (max-width: 1024px) { .clip-shape { display: none; } }
+    </style>
 </head>
-<body>  
-    <header>
-        <nav id="navbar">
-            <i class="fa-solid fa-code" id="nav_logo"> bruno</i>
+<body class="bg-light text-secondary pt-20">
+    <link rel="icon" type="image/png" href="src/images/logo_bruno.png">
+    
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full px-[8%] py-4 z-[1000] transition-all duration-300 bg-light/80 backdrop-blur-md">
+        <nav class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <img src="src/images/logo_bruno.png" alt="Logo Bruno Avila" class="h-10 w-auto">
+                <span class="text-2xl font-bold">BRUNO</span>
+            </div>
 
-            <ul id="nav_list">
-                <li class="nav-item active">
-                    <a href="#home">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#sobre">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#tutoriais">Tutoriais</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projetos">Projetos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contato">Contato</a>
-                </li>
+            <ul class="hidden lg:flex items-center gap-12 font-semibold text-accent">
+                <li><a href="index.html" class="text-primary border-b-2 border-primary">Início</a></li>
+                <li><a href="sobre.html" class="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary">Sobre</a></li>
+                <li><a href="projetos.html" class="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary">Projetos</a></li>
+                <li><a href="contato.html" class="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary">Contato</a></li>
             </ul>
 
-            <button class="btn-default">
+            <button class="hidden lg:block bg-primary text-white px-6 py-2.5 rounded-xl font-semibold shadow-lg hover:bg-blue-900 transition-all active:scale-95">
                 Contato
             </button>
 
-            <button id="mobile_btn">
+            <button id="mobile_btn" class="lg:hidden text-2xl text-secondary">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </nav>
 
-        <div id="mobile_menu">
-            <ul id="mobile_nav_list">
-                <li class="nav-item">
-                    <a href="#home">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#sobre">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#tutoriais">Tutoriais</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projetos">Projetos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contato">Contato</a>
-                </li>
-
-            </ul>    
-            <button class="btn-default">
-                Contato
-            </button>
+        <!-- Mobile Menu -->
+        <div id="mobile_menu" class="hidden flex-col items-center bg-white absolute top-full left-0 w-full py-6 shadow-xl lg:hidden">
+            <ul class="flex flex-col items-center gap-4 font-semibold text-accent mb-6">
+                <li><a href="#home" class="mobile-nav-link">Início</a></li>
+                <li><a href="#sobre" class="mobile-nav-link">Sobre</a></li>
+                <li><a href="#projetos" class="mobile-nav-link">Projetos</a></li>
+                <li><a href="#contato" class="mobile-nav-link">Contato</a></li>
+            </ul>
+            <button class="bg-primary text-white px-8 py-2 rounded-xl font-semibold">Contato</button>
         </div>
     </header>
 
-    <main id="content">
-        <section id="home">
-            <div id="cta">
-                <h1 class="title">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis assumenda velit neque enim dignissimos est molestias excepturi ducimus vel, harum quas ratione dicta consequatur qui laudantium quod fuga vitae delectus.
-                </h1>
-
-                <p class="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda voluptatem, deserunt vitae tempora velit quia eligendi ea sit similique quibusdam tempore obcaecati architecto fugiat in nisi ad et, consequatur id!
-                </p>
-
-                <div id="cta_buttons">
-                    <a href="#" class="btn-default">
-                        Contato
-                    </a>
-
-                    <a href="tel:+55999572116" id="phone_button">
-                        <button class="btn-default">
-                            <i class="fa-solid fa-phone"></i>
-                            (55) 9 9957-2116
-                        </button>
-                    </a>
-                </div>
-
-                <div class="social-media-buttons">
-                    <a href="">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-                    <a href="">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-
-                </div>
-
-                
-
-            </div>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-[90vh] flex flex-col lg:flex-row items-center justify-between px-[8%] py-20 overflow-hidden">
+            <!-- Background Decorative Element -->
+            <div class="clip-shape absolute top-0 right-0 w-[45%] h-full bg-primary opacity-90 z-0"></div>
             
-            <div id="banner">
-                <img src="" alt="">
+            <!-- Content -->
+            <div class="w-full lg:w-[55%] flex flex-col gap-10 z-10 animate-fade-in-left text-center lg:text-left">
+                
+                <!-- Professional Badge -->
+                <div class="inline-flex items-center self-center lg:self-start gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                    </span>
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest">Infraestrutura & Continuidade</span>
+                </div>
 
+                <div class="space-y-6">
+                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight text-secondary">
+                        Arquitetando a <span class="text-primary">continuidade</span> de operações críticas
+                    </h1>
+                    <p class="text-accent text-lg lg:text-xl leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Virtualização e gestão de servidores Linux. Transformo infraestruturas complexas em ambientes estáveis, resilientes e de alta disponibilidade.
+                    </p>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center gap-5 justify-center lg:justify-start">
+                    <a href="#contato" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-primary text-white px-10 py-5 rounded-2xl font-bold shadow-2xl hover:bg-blue-900 hover:-translate-y-1 transition-all active:scale-95 group">
+                        <span>Consultoria Técnica</span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    
+                    <a href="https://wa.me/55999572116" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-white text-secondary px-10 py-5 rounded-2xl font-bold shadow-lg border border-gray-100 hover:bg-gray-50 hover:-translate-y-1 transition-all active:scale-95">
+                        <i class="fa-brands fa-whatsapp text-2xl text-[#25D366]"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Social Proof / Network -->
+                <div class="flex flex-col gap-4 mt-4 lg:mt-8">
+                    <span class="text-xs font-bold text-accent uppercase tracking-widest">Conecte-se comigo</span>
+                    <div class="flex gap-4 justify-center lg:justify-start">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>                    
+                    </div>
+                </div>
             </div>
 
-
+            <!-- Carousel -->
+            <div class="w-full lg:w-[45%] flex justify-center lg:justify-end z-10 mt-16 lg:mt-0 animate-fade-in-right relative">
+                <div class="relative w-full max-w-[550px] aspect-[3/4] overflow-hidden rounded-3xl shadow-2xl">
+                    <img src="src/images/hero1.png" alt="Bruno Avila 1" class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-100">
+                    <img src="src/images/hero2.png" alt="Bruno Avila 2" class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-0">
+                    <img src="src/images/hero3.png" alt="Bruno Avila 3" class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-0">
+                </div>
+            </div>
         </section>
-    
-    </main>     
 
+        <!-- Sobre Section -->
+        <section id="sobre" class="px-[8%] py-24 bg-white">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 flex justify-center">
+                    <img src="src/images/bruno_home.png" alt="Bruno Avila" class="rounded-3xl shadow-xl w-full max-w-md">
+                </div>
+                <div class="flex-[1.5]">
+                    <h2 class="text-4xl font-bold mb-8 text-center lg:text-left">Sobre <span class="text-primary">Mim</span></h2>
+                    <p class="text-accent text-lg leading-relaxed mb-6">
+                        Transformo infraestrutura em performance. No NOC da New Life Fibra, sou responsável pelo ciclo completo de projetos: do planejamento à implementação. Especialista em virtualização e gestão de servidores linux, foco meu trabalho na criação de ambientes resilientes e flexíveis. Minha missão é garantir a continuidade dos serviços através de uma abordagem técnica rigorosa, proatividade e foco em eficiência operacional.
+                    </p>
+                    <p class="text-accent text-lg leading-relaxed mb-10">
+                        Comprometido com a alta disponibilidade e a evolução contínua da rede.
+                    </p>
+                    
+                    <div>
+                        <h3 class="font-bold text-xl mb-6">Minhas Habilidades</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="skill-pill"><i class="fa-brands fa-linux text-[#E34F26]"></i> Linux</div>
+                            <div class="skill-pill"><i class="fa-solid fa-database text-[#1572B6]"></i> SQL</div>
+                            <div class="skill-pill"><i class="fa-brands fa-golang text-[#339933]"></i> Golang</div>
+                            <div class="skill-pill"><i class="fa-brands fa-docker text-[#2496ED]"></i> Docker</div>
+                            <div class="skill-pill"><img src="src/images/icons/proxmox.png" alt="Proxmox" class="w-5 h-5 object-contain"> Proxmox</div>     
+                            <div class="skill-pill"><img src="src/images/icons/mikrotik.png" alt="Mikrotik" class="w-5 h-5 object-contain"> Mikrotik</div>                                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Implementações Section -->
+        <section id="implementacoes" class="px-[8%] py-24 bg-light/50">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Experiência em <span class="text-primary">Implementações</span></h2>
+                <p class="text-accent text-lg max-w-2xl mx-auto">Projetos reais executados com rigor técnico e foco em estabilidade operacional.</p>
+            </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Unifi -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="src/images/implementacoes/wifi.png" alt="Rede Wi-Fi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                            <i class="fa-solid fa-wifi text-primary text-xl group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Rede Wi-Fi de alta performance</h3>
+                        <p class="text-accent text-sm leading-relaxed">Implantação de Wi-Fi profissional com roaming contínuo e gestão centralizada para ambientes de grande fluxo.</p>
+                    </div>
+                </div>
 
+                <!-- FTTx -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="src/images/implementacoes/fttx.png" alt="Redes FTTX" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                            <i class="fa-solid fa-microchip text-primary text-xl group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Redes FTTX</h3>
+                        <p class="text-accent text-sm leading-relaxed">Projeto e manutenção de infraestrutura de redes para provedores de internet, com foco em desempenho e estabilidade.</p>
+                    </div>
+                </div>
 
-    
+                <!-- PTP -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="src/images/implementacoes/ptp.png" alt="Enlace PTP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                            <i class="fa-solid fa-tower-broadcast text-primary text-xl group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Rede Wireless</h3>
+                        <p class="text-accent text-sm leading-relaxed">Estabelecimento de conectividade de rádio de longo alcance para áreas remotas com alta confiabilidade.</p>
+                    </div>
+                </div>
+
+                <!-- Linux -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="src/images/implementacoes/linux.png" alt="Servidores Linux" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                            <i class="fa-brands fa-linux text-primary text-xl group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Gestão de Servidores Linux</h3>
+                        <p class="text-accent text-sm leading-relaxed">Administração de ecossistemas críticos, monitoramento e automação de serviços em ambientes produtivos.</p>
+                    </div>
+                </div>
+
+                <!-- Helpdesk -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="src/images/implementacoes/helpdesk.png" alt="Gestão de Helpdesk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                            <i class="fa-solid fa-headset text-primary text-xl group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Gestão de Helpdesk</h3>
+                        <p class="text-accent text-sm leading-relaxed">Implementação e customização de sistema para organização e gestão de processos internos.</p>
+                    </div>
+                </div>
+
+                <!-- SQL -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="src/images/implementacoes/sql.png" alt="Banco SQL" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                            <i class="fa-solid fa-database text-primary text-xl group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Gestão de Banco SQL</h3>
+                        <p class="text-accent text-sm leading-relaxed">Configuração, manutenção e otimização de queries e backups seguros de bases de dados relacionais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos Section -->
+        <section id="projetos" class="px-[8%] py-24 bg-white">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl font-bold mb-4">Projetos em <span class="text-primary">Destaque</span></h2>
+                <p class="text-accent text-lg max-w-2xl mx-auto">Sistemas e ferramentas desenvolvidas para otimizar operações e garantir a segurança de dados.</p>
+            </div>
+
+            <div class="flex flex-col gap-24">
+                
+                <!-- Mimic Backup -->
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <div class="flex-1 w-full order-2 lg:order-1">
+                        <div class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">Data Security</div>
+                        <h3 class="text-3xl font-bold mb-6 text-secondary">Mimic Backup</h3>
+                        <p class="text-accent text-lg leading-relaxed mb-8">
+                            Uma solução robusta de automação para backup de roteadores corporativos. Desenvolvido para garantir que informações críticas de infraestrutura estejam sempre seguras e disponíveis, com logs detalhados e alertas em tempo real.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="skill-pill">GO</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">Encryption</span>
+                        </div>
+                        <div class="flex gap-6">
+                            <a href="#" class="text-primary font-bold flex items-center gap-2 hover:underline">Ver Case <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#" class="text-accent hover:text-primary transition-colors text-2xl"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full order-1 lg:order-2">
+                        <div class="relative group">
+                            <div class="absolute -inset-2 bg-gradient-to-r from-primary to-blue-400 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                            <img src="/src/images/projetos/mimic_backup.png" alt="Mimic Backup" class="relative rounded-[2rem] shadow-2xl w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IP6 Network Tools -->
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <div class="flex-1 w-full">
+                        <div class="relative group">
+                            <div class="absolute -inset-2 bg-gradient-to-r from-blue-400 to-primary rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                            <img src="/src/images/projetos/ip6_tools.png" alt="IP6 Network Tools" class="relative rounded-[2rem] shadow-2xl w-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <div class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">Network Management</div>
+                        <h3 class="text-3xl font-bold mb-6 text-secondary">IP6 Network Tools</h3>
+                        <p class="text-accent text-lg leading-relaxed mb-8">
+                            Toolkit especializado para gestão e diagnóstico de redes. Facilita o monitoramento de performance e a identificação de falhas em pilhas de rede modernas, otimizando o trabalho do NOC.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="skill-pill">Networking</span>
+                            <span class="skill-pill">IPv4 & IPv6</span>
+                            <span class="skill-pill">Monitoring</span>
+                        </div>
+                        <div class="flex gap-6">
+                            <a href="#" class="text-primary font-bold flex items-center gap-2 hover:underline">Ver Case <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#" class="text-accent hover:text-primary transition-colors text-2xl"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catalogo do ISP -->
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <div class="flex-1 w-full order-2 lg:order-1">
+                        <div class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">Asset Management</div>
+                        <h3 class="text-3xl font-bold mb-6 text-secondary">Catalogo do ISP</h3>
+                        <p class="text-accent text-lg leading-relaxed mb-8">
+                            Sistema completo para catalogação de ativos e documentação técnica para provedores de internet. Centraliza informações críticas de rede e equipamentos em uma interface intuitiva.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="skill-pill">Web Dev</span>
+                            <span class="skill-pill">PostgreSQL</span>
+                            <span class="skill-pill">Documentation</span>
+                        </div>
+                        <div class="flex gap-6">
+                            <a href="#" class="text-primary font-bold flex items-center gap-2 hover:underline">Ver Case <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#" class="text-accent hover:text-primary transition-colors text-2xl"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full order-1 lg:order-2">
+                        <div class="relative group">
+                            <div class="absolute -inset-2 bg-gradient-to-r from-primary to-blue-400 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                            <img src="/src/images/projetos/catalogo_isp.png" alt="Catalogo do ISP" class="relative rounded-[2rem] shadow-2xl w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="px-[8%] py-24">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10 lg:p-16">
+                <h2 class="text-4xl font-bold mb-12 text-center">Entre em <span class="text-primary">Contato</span></h2>
+                <form id="contact_form" class="flex flex-col gap-6">
+                    <div class="flex flex-col lg:flex-row gap-6">
+                        <div class="flex flex-col gap-2 flex-1">
+                            <label class="font-semibold">Nome</label>
+                            <input type="text" placeholder="Seu nome" class="border border-gray-200 rounded-xl p-4 outline-none focus:border-primary transition-colors bg-light" required>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <label class="font-semibold">E-mail</label>
+                            <input type="email" placeholder="Seu e-mail" class="border border-gray-200 rounded-xl p-4 outline-none focus:border-primary transition-colors bg-light" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="font-semibold">Mensagem</label>
+                        <textarea rows="5" placeholder="Sua mensagem" class="border border-gray-200 rounded-xl p-4 outline-none focus:border-primary transition-colors bg-light" required></textarea>
+                    </div>
+                    <button type="submit" class="bg-primary text-white py-4 rounded-xl font-bold shadow-lg hover:bg-blue-900 transition-all active:scale-95">
+                        Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-white px-[8%] py-12">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 border-t border-gray-700 pt-8">
+            <p class="text-accent text-sm">&copy; 2026 Bruno Avila. Todos os direitos reservados.</p>
+            <div class="flex gap-6">
+                <a href="#" class="footer-social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="footer-social-icon"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Tailwind Classes (Styles) -->
+    <style type="text/tailwindcss">
+        .social-icon {
+            @apply w-12 h-12 flex items-center justify-center bg-white text-secondary rounded-full shadow-md text-xl hover:text-primary hover:bg-gray-50 transition-all active:scale-90;
+        }
+        .skill-pill {
+            @apply flex items-center gap-3 bg-light px-4 py-2 rounded-lg font-medium text-sm shadow-sm border border-gray-100;
+        }
+        .footer-social-icon {
+            @apply text-2xl text-gray-400 hover:text-white transition-colors;
+        }
+        .mobile-nav-link {
+            @apply text-xl hover:text-primary transition-colors py-2;
+        }
+    </style>
+
     <script src="src/javascript/script.js"></script>
 </body>
 </html>

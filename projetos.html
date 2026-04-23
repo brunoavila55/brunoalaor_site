@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Projetos | Bruno Avila</title>
+    <link rel="icon" type="image/png" href="src/images/logo_bruno.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#1E3A8A', secondary: '#1E293B', accent: '#64748B', light: '#F8FAFC' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Poppins', sans-serif; }</style>
+</head>
+<body class="bg-light text-secondary pt-24">
+    
+    <!-- Navigation (Same as Index) -->
+    <header class="fixed top-0 left-0 w-full px-[8%] py-4 z-[1000] bg-white shadow-sm">
+        <nav class="flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="src/images/logo_bruno.png" alt="Logo Bruno Avila" class="h-10 w-auto">
+                <span class="text-2xl font-bold">bruno</span>
+            </a>
+            <ul class="hidden lg:flex items-center gap-12 font-semibold text-accent">
+                <li><a href="index.html" class="hover:text-primary transition-colors">Início</a></li>
+                <li><a href="sobre.html" class="hover:text-primary transition-colors">Sobre</a></li>
+                <li><a href="projetos.html" class="text-primary border-b-2 border-primary">Projetos</a></li>
+                <li><a href="contato.html" class="hover:text-primary transition-colors">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="px-[8%] py-12">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-extrabold mb-4">Meus <span class="text-primary">Projetos</span></h1>
+            <p class="text-accent text-xl max-w-2xl mx-auto">Explore a galeria completa de soluções que desenvolvi, desde aplicações web até sistemas complexos.</p>
+        </div>
+
+        <!-- Filtros -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button class="bg-primary text-white px-6 py-2 rounded-full font-semibold shadow-md">Todos</button>
+            <button class="bg-white text-accent px-6 py-2 rounded-full font-semibold shadow-sm hover:bg-gray-50">Frontend</button>
+            <button class="bg-white text-accent px-6 py-2 rounded-full font-semibold shadow-sm hover:bg-gray-50">Backend</button>
+            <button class="bg-white text-accent px-6 py-2 rounded-full font-semibold shadow-sm hover:bg-gray-50">Mobile</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Cards (Repetir com Lorem) -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg group">
+                <img src="https://via.placeholder.com/600x400" alt="Projeto" class="w-full h-64 object-cover">
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-2 py-1 rounded">Web Design</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Lorem Ipsum Project Title</h3>
+                    <p class="text-accent mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-primary font-bold flex items-center gap-2 hover:underline">Ver Detalhes <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                        <div class="flex gap-3 text-gray-400">
+                            <i class="fa-brands fa-github hover:text-secondary cursor-pointer"></i>
+                            <i class="fa-solid fa-external-link hover:text-secondary cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Replicar card mais 5 vezes para encher a página -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg group">
+                <img src="https://via.placeholder.com/600x400" alt="Projeto" class="w-full h-64 object-cover text-gray-400">
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4"><span class="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-2 py-1 rounded">React App</span></div>
+                    <h3 class="text-2xl font-bold mb-3">Dolor Sit Amet App</h3>
+                    <p class="text-accent mb-6">Consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                    <a href="#" class="text-primary font-bold flex items-center gap-2 hover:underline">Ver Detalhes <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg group">
+                <img src="https://via.placeholder.com/600x400" alt="Projeto" class="w-full h-64 object-cover">
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4"><span class="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-2 py-1 rounded">Backend</span></div>
+                    <h3 class="text-2xl font-bold mb-3">Consectetur System</h3>
+                    <p class="text-accent mb-6">Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit amet.</p>
+                    <a href="#" class="text-primary font-bold flex items-center gap-2 hover:underline">Ver Detalhes <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-secondary text-white px-[8%] py-12 mt-20">
+        <p class="text-center text-accent text-sm">&copy; 2026 Bruno Avila. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
